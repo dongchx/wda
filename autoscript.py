@@ -1,5 +1,8 @@
 import wda
 import time
+import math
+import shutil
+from PIL import Image, ImageDraw
 
 # default False
 # Enable debug will see http Request and Response
@@ -29,8 +32,8 @@ words = ["123\n", "新浪\n", "mip\n", "秋葵的做法大全\n", "海草舞\n",
 sec = [0, 1, 2,  3, 4, 5, 6]
 
 
-def waiting():
-	time.sleep(1)
+def waiting(t):
+	time.sleep(t)
 
 
 def inputKeywords(key):
@@ -41,32 +44,86 @@ def inputKeywords(key):
 		pass
 
 
-def output(count):
-	waiting()
-	c.screenshot('img/'+str(count)+'.png')
+def output_screenshot(path):
+	c.screenshot(path)
 
+
+def whiteScreen(im):
+	w,h = im.size;
+	im_pixel = im.load()
+
+	# print("size: {}, {}".format(w, h))
+
+	scan_x = int(w/5);
+	scan_start_y = int(h/5)
+	scan_end_y = int(h*4/5)
+
+	first_pi = im_pixel[scan_x, scan_start_y]
+	for y in range(scan_start_y,scan_end_y):
+		pixel = im_pixel[scan_x, y]
+		if pixel != first_pi:
+			im.close()
+			return False
+			pass
+		pass
+
+	im.close()
+	return True
+
+def imagPath(count):
+	path = 'img/'+str(count)+'.png'
+	return path
+
+
+def wImagePath(count):
+	path = 'wimg/'+str(count)+'.png'
+	return path
+
+def shotAgain(count):
+	waiting(7)
+	imgPath = imagPath(count)
+	output_screenshot(imgPath)
+	im = Image.open(imgPath)
+
+	if whiteScreen(im):
+		nImagePath = wImagePath(count)
+		shutil.copyfile(imgPath, nImagePath)
+		pass
 
 
 def main():
 	count  = 0
 
 	while True:
+		# if count > 0 and count%3 == 0:
+		# 	e.click()
+		# 	if s(type='Cell').exists:
+		# 		s(type='Cell', index=0).click()
+		# 		pass
+		# 	pass
 
-		if count > 0 and count%3 == 0:
-			e.click()
-			if s(type='Cell').exists:
-				s(type='Cell', index=0).tap()
-				pass
+		# else:
+		# 	index = count % len(words)
+		# 	key = words[index]
+		# 	inputKeywords(key)
+		# 	# print(str(count)+key)
+		# 	pass
+
+		index = count % len(words)
+		key = words[index]
+		inputKeywords(key)
+
+		waiting(2)
+		imgPath = 'img/'+str(count)+'.png'
+		output_screenshot(imgPath)
+		im = Image.open(imgPath)
+		print(str(count)+key)
+
+		if whiteScreen(im):
+			print("whiteScreen")
+			shotAgain(count)
 			pass
 
-		else:
-			index = count % len(words)
-			key = words[index]
-			inputKeywords(key)
-			print(str(count)+key)
-			pass
-
-		output(count)
 		count += 1
 
 		if count % 10 == 0:
@@ -74,7 +131,6 @@ def main():
 				s(name='回首页').tap();
 				pass
 			pass
-
 		pass
 
 if __name__ == '__main__':
