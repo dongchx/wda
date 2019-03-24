@@ -3,6 +3,8 @@ import time
 import math
 import shutil
 from PIL import Image, ImageDraw
+import sys
+import os
 
 # default False
 # Enable debug will see http Request and Response
@@ -11,8 +13,11 @@ wda.DEBUG = False
 # default 60.0 seconds
 wda.HTTP_TIMEOUT = 60.0 
 
+# port
+port = sys.argv[1]
+
 # build connection
-c = wda.Client('http://localhost:8100')
+c = wda.Client('http://localhost:'+str(port))
 
 # Show status
 print (c.status())
@@ -29,7 +34,7 @@ words = ["123\n", "新浪\n", "mip\n", "秋葵的做法大全\n", "海草舞\n",
          "费内巴切\n", "狼堡\n", "霍芬海姆\n", "海牙\n", "里斯本竞技\n", "热那亚\n", "尼斯\n", "里昂\n", "南特\n", 
          "贝尔格莱德\n", "雷丁\n", "诺丁汉\n", "莫尔德\n", "苏黎世\n", "柏林赫塔\n", "博尔顿\n", "圣保罗\n", "科特布斯\n"]
 
-sec = [0, 1, 2,  3, 4, 5, 6]
+# sec = [0, 1, 2,  3, 4, 5, 6]
 
 
 def waiting(t):
@@ -70,13 +75,18 @@ def whiteScreen(im):
 	im.close()
 	return True
 
+#创建目录
+def createPath(path):
+	if not os.path.exists(path):
+		os.mkdir(path)
+
 def imagPath(count):
-	path = 'img/'+str(count)+'.png'
+	path = 'img/'+str(port)+'/'+str(count)+'.png'
 	return path
 
 
 def wImagePath(count):
-	path = 'wimg/'+str(count)+'.png'
+	path = 'wimg/'+str(port)+'/'+str(count)+'.png'
 	return path
 
 def shotAgain(count):
@@ -93,6 +103,12 @@ def shotAgain(count):
 
 def main():
 	count  = 0
+
+	imgFold = 'img/'+str(port)
+	wimgFold = 'wimg/'+str(port)
+
+	createPath(imgFold)
+	createPath(wimgFold)
 
 	while True:
 		# if count > 0 and count%3 == 0:
@@ -114,7 +130,7 @@ def main():
 		inputKeywords(key)
 
 		waiting(2)
-		imgPath = 'img/'+str(count)+'.png'
+		imgPath = imagPath(count)
 		output_screenshot(imgPath)
 		im = Image.open(imgPath)
 		print(str(count)+key)

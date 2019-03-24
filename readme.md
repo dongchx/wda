@@ -17,6 +17,8 @@
 
 + pip3 install --pre facebook-wda -- 安装python依赖库
 
++ pip3 install pillow -- 
+
 #### 真机安装wda
 
 + git clone https://github.com/facebook/WebDriverAgent.git -- 克隆WDA工程到本地
@@ -54,4 +56,5 @@
 
 #### 其他
 
-+ 屏幕截图存放在wda/img 目录下
++ 所有屏幕截图存放在wda/img目录下
++ 白屏屏幕截图会保存在wda/wimg目录下
