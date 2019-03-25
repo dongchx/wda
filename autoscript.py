@@ -14,7 +14,10 @@ wda.DEBUG = False
 wda.HTTP_TIMEOUT = 60.0 
 
 # port
-port = sys.argv[1]
+port = 8100
+if sys.argv[1]:
+	port = sys.argv[1]
+	pass
 
 # build connection
 c = wda.Client('http://localhost:'+str(port))
@@ -29,10 +32,7 @@ e = s(type='TextField')
 # const
 words = ["123\n", "新浪\n", "mip\n", "秋葵的做法大全\n", "海草舞\n", 
 		 "曼联\n", "阿森纳\n", "切尔西\n", "热刺\n", "曼城\n", "利物浦\n", "波尔图\n", "大巴黎\n", "巴塞罗那\n", "皇马\n", "拜仁\n",
-         "尤文图斯\n", "都灵\n", "AC米兰\n", "罗马\n", "威尼斯\n", "桑普多利亚\n", "乌迪内斯\n", "那不勒斯\n", "阿贾克斯\n", 
-         "费耶诺德\n", "埃因霍温\n", "塞维利亚\n", "西班牙人\n", "拉齐奥\n", "法兰克福\n", "多特蒙德\n", "马德里竞技\n", "凯尔特人\n",
-         "费内巴切\n", "狼堡\n", "霍芬海姆\n", "海牙\n", "里斯本竞技\n", "热那亚\n", "尼斯\n", "里昂\n", "南特\n", 
-         "贝尔格莱德\n", "雷丁\n", "诺丁汉\n", "莫尔德\n", "苏黎世\n", "柏林赫塔\n", "博尔顿\n", "圣保罗\n", "科特布斯\n"]
+		 "al\n","ak\n","az\n","ar\n","ca\n","co\n","ct\n","de\n","fl\n","ga\n","hi\n","id\n","il\n",]
 
 # sec = [0, 1, 2,  3, 4, 5, 6]
 
@@ -98,11 +98,16 @@ def shotAgain(count):
 	if whiteScreen(im):
 		nImagePath = wImagePath(count)
 		shutil.copyfile(imgPath, nImagePath)
+		waiting(15)
 		pass
 
 
 def main():
 	count  = 0
+
+	if sys.argv[2]:
+		count = int(sys.argv[2])
+		pass
 
 	imgFold = 'img/'+str(port)
 	wimgFold = 'wimg/'+str(port)
