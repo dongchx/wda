@@ -5,6 +5,7 @@ import shutil
 from PIL import Image, ImageDraw
 import sys
 import os
+import csv
 
 # default False
 # Enable debug will see http Request and Response
@@ -30,9 +31,13 @@ s = c.session()
 e = s(type='TextField')
 
 # const
-words = ["123\n", "新浪\n", "mip\n", "秋葵的做法大全\n", "海草舞\n", 
-		 "曼联\n", "阿森纳\n", "切尔西\n", "热刺\n", "曼城\n", "利物浦\n", "波尔图\n", "大巴黎\n", "巴塞罗那\n", "皇马\n", "拜仁\n",
-		 "al\n","ak\n","az\n","ar\n","ca\n","co\n","ct\n","de\n","fl\n","ga\n","hi\n","id\n","il\n",]
+# words = ["123\n", "新浪\n", "mip\n", "秋葵的做法大全\n", "海草舞\n", 
+# 		 "曼联\n", "阿森纳\n", "切尔西\n", "热刺\n", "曼城\n", "利物浦\n", "波尔图\n", "大巴黎\n", "巴塞罗那\n", "皇马\n", "拜仁\n",
+# 		 "al\n","ak\n","az\n","ar\n","ca\n","co\n","ct\n","de\n","fl\n","ga\n","hi\n","id\n","il\n",]
+
+words = ["http://bjyz-ala-fe-col-6.epc.baidu.com:8003/s?word=%E5%88%98%E5%BE%B7%E5%8D%8E&sasub=gh_icon20190325&modetest=1&bd_ck=0&ex_bp_rt=1\n", 
+         "http://bjyz-ala-fe-col-6.epc.baidu.com:8003/s?word=%E5%88%98%E5%BE%B7%E5%8D%8E&sasub=gh_icon20190325&modetest=2&bd_ck=0&ex_bp_rt=1\n", 
+         "http://bjyz-ala-fe-col-6.epc.baidu.com:8003/s?word=%E5%88%98%E5%BE%B7%E5%8D%8E&sasub=gh_icon20190325&modetest=4&bd_ck=0&ex_bp_rt=1\n"]
 
 # sec = [0, 1, 2,  3, 4, 5, 6]
 
@@ -43,10 +48,10 @@ def waiting(t):
 
 def inputKeywords(key):
 	e.clear_text()
-
-	for w in key:
-		e.set_text(w)
-		pass
+	e.set_text(key)
+	# for w in key:
+	# 	e.set_text(w)
+	# 	pass
 
 
 def output_screenshot(path):
