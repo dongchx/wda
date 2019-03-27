@@ -99,6 +99,9 @@ def shotAgain(count):
 		nImagePath = wImagePath(count)
 		shutil.copyfile(imgPath, nImagePath)
 		waiting(15)
+		if s(name=u'name').exists:
+			s(name=u'name').tap()
+			pass
 		pass
 
 

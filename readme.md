@@ -17,7 +17,7 @@
 
 + pip3 install --pre facebook-wda -- 安装python依赖库
 
-+ pip3 install pillow -- 
++ pip3 install pillow -- python图片处理库
 
 #### 真机安装wda
 
@@ -44,7 +44,7 @@
 
 #### 运行脚本
 
-+ iproxy 8100 8100 --> 端口转发- 运行成功命令行会提示waiting connection
++ iproxy 8100 8100 [UDID] --> 端口转发- 运行成功命令行会提示waiting connection
 
 + 浏览器 打开 http://localhost:8100/inspector， 能看到终端界面的映射
 
