@@ -22,6 +22,8 @@
 #### 真机安装wda
 
 + git clone https://github.com/facebook/WebDriverAgent.git -- 克隆WDA工程到本地
+	+ xcode 10.2 git clone git@github.com:appium/WebDriverAgent.git
+	+ xcode 10.2 XCAXClient_iOS API有调整
 
 + cd WebDriverAgent - 切换到工程目录
 

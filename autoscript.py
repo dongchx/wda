@@ -9,7 +9,7 @@ import os
 # default False
 # Enable debug will see http Request and Response
 # wda.DEBUG = True
-wda.DEBUG = False 
+wda.DEBUG = False
 # default 60.0 seconds
 wda.HTTP_TIMEOUT = 60.0 
 
@@ -22,7 +22,7 @@ if len(sys.argv)>1:
 # build connection
 c = wda.Client('http://localhost:'+str(port))
 
-# Show status
+# show status
 print (c.status())
 
 # instance
@@ -32,7 +32,7 @@ e = s(type='TextField')
 # const
 words = ["123\n", "新浪\n", "mip\n", "秋葵的做法大全\n", "海草舞\n", 
 		 "曼联\n", "阿森纳\n", "切尔西\n", "热刺\n", "曼城\n", "利物浦\n", "波尔图\n", "大巴黎\n", "巴塞罗那\n", "皇马\n", "拜仁\n",
-		 "al\n","ak\n","az\n","ar\n","ca\n","co\n","ct\n","de\n","fl\n","ga\n","hi\n","id\n","il\n",]
+		 "al\n","ak\n","az\n","ar\n","ca\n","co\n","ct\n","de\n","fl\n","ga\n","hi\n","id\n","il\n"]
 
 # sec = [0, 1, 2,  3, 4, 5, 6]
 
@@ -99,9 +99,11 @@ def shotAgain(count):
 		nImagePath = wImagePath(count)
 		shutil.copyfile(imgPath, nImagePath)
 		waiting(15)
-		if s(name=u'name').exists:
-			s(name=u'name').tap()
-			pass
+		# if s(name=u'redtag').exists:
+		# 	s(name=u'redtag').tap()
+		# 	waiting(1)
+		# 	s(name=u'确定').tap()
+		# 	pass
 		pass
 
 
