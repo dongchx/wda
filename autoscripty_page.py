@@ -64,9 +64,9 @@ def whiteScreen(im):
 
 	# print("size: {}, {}".format(w, h))
 
-	scan_x = int(w/5);
-	scan_start_y = int(h/5)
-	scan_end_y = int(h*4/5)
+	scan_x = int(w*4/5);
+	scan_start_y = int(h/4)
+	scan_end_y = int(h*3/4)
 
 	first_pi = im_pixel[scan_x, scan_start_y]
 	for y in range(scan_start_y,scan_end_y):
@@ -101,11 +101,10 @@ def shotAgain(count):
 	im = Image.open(imgPath)
 
 	if whiteScreen(im):
+		print('whiteScreen')
 		nImagePath = wImagePath(count)
 		shutil.copyfile(imgPath, nImagePath)
-		waiting(15)
 		pass
-
 
 def main():
 	count  = 0
@@ -121,32 +120,29 @@ def main():
 	createPath(wimgFold)
 
 	while True:
-		# if count > 0 and count%3 == 0:
-		# 	e.click()
-		# 	if s(type='Cell').exists:
-		# 		s(type='Cell', index=0).click()
-		# 		pass
-		# 	pass
-
-		# else:
-		# 	index = count % len(words)
-		# 	key = words[index]
-		# 	inputKeywords(key)
-		# 	# print(str(count)+key)
-		# 	pass
-
-		index = count % len(words)
-		key = words[index]
-		inputKeywords(key)
+		
+		if s(name='hidden').exists:
+			s(name='hidden').tap()
+			print('tap hidden')
+			waiting(0.3)
+			pass
+		if s(name='下一词').exists:
+			s(name='下一词').tap()
+			print('tap next')
+			waiting(0.5)
+			pass
+		if s(name='show').exists:
+			s(name='show').tap()
+			print('tap show')
+			pass
 
 		waiting(2)
 		imgPath = imagPath(count)
 		output_screenshot(imgPath)
 		im = Image.open(imgPath)
-		print(str(count)+key)
+		print(str(count))
 
 		if whiteScreen(im):
-			print("whiteScreen")
 			shotAgain(count)
 			pass
 

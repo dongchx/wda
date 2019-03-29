@@ -9,7 +9,7 @@ import os
 # default False
 # Enable debug will see http Request and Response
 # wda.DEBUG = True
-wda.DEBUG = False
+wda.DEBUG = True
 # default 60.0 seconds
 wda.HTTP_TIMEOUT = 60.0 
 
