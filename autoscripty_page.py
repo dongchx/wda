@@ -104,6 +104,9 @@ def shotAgain(count):
 		print('whiteScreen')
 		nImagePath = wImagePath(count)
 		shutil.copyfile(imgPath, nImagePath)
+		waiting(10)
+		iPath = 'wimg/'+str(port)+'/sync_'+str(count)+'.png'
+		output_screenshot(iPath)
 		pass
 
 def main():
@@ -121,19 +124,28 @@ def main():
 
 	while True:
 		
-		if s(name='hidden').exists:
-			s(name='hidden').tap()
-			print('tap hidden')
+		if s(name='框架').exists:
+			s(name='框架').tap()
+			print('tap frame')
+			waiting(1.5)
+			ipath =imgFold+'/frame_'+str(count)+'.png'
+			output_screenshot(ipath)
+			pass
+
+		if s(name='present').exists:
+			s(name='present').tap()
+			print('tap present')
 			waiting(0.3)
 			pass
-		if s(name='下一词').exists:
-			s(name='下一词').tap()
-			print('tap next')
+
+		if s(name='load').exists:
+			s(name='load').tap()
+			print('tap load')
 			waiting(0.5)
 			pass
-		if s(name='show').exists:
-			s(name='show').tap()
-			print('tap show')
+		if s(name='dismiss').exists:
+			s(name='dismiss').tap()
+			print('tap dismiss')
 			pass
 
 		waiting(2)
