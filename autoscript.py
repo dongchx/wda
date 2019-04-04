@@ -90,7 +90,7 @@ def wImagePath(count):
 	return path
 
 def shotAgain(count):
-	waiting(7)
+	waiting(15)
 	imgPath = imagPath(count)
 	output_screenshot(imgPath)
 	im = Image.open(imgPath)
@@ -98,7 +98,7 @@ def shotAgain(count):
 	if whiteScreen(im):
 		nImagePath = wImagePath(count)
 		shutil.copyfile(imgPath, nImagePath)
-		waiting(15)
+		waiting(7)
 		# if s(name=u'redtag').exists:
 		# 	s(name=u'redtag').tap()
 		# 	waiting(1)

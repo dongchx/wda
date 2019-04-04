@@ -143,6 +143,7 @@ def main():
 			print('tap load')
 			waiting(5)
 			pass
+			
 		if s(name='dismiss').exists:
 			s(name='dismiss').tap()
 			print('tap dismiss')
