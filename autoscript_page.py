@@ -127,7 +127,7 @@ def main():
 		if s(name='框架').exists:
 			s(name='框架').tap()
 			print('tap frame')
-			waiting(1.5)
+			waiting(2)
 			ipath =imgFold+'/frame_'+str(count)+'.png'
 			output_screenshot(ipath)
 			pass
@@ -135,28 +135,28 @@ def main():
 		if s(name='present').exists:
 			s(name='present').tap()
 			print('tap present')
-			waiting(0.3)
+			waiting(3)
 			pass
 
 		if s(name='load').exists:
 			s(name='load').tap()
 			print('tap load')
-			waiting(0.5)
+			waiting(5)
 			pass
 		if s(name='dismiss').exists:
 			s(name='dismiss').tap()
 			print('tap dismiss')
 			pass
 
-		waiting(2)
-		imgPath = imagPath(count)
-		output_screenshot(imgPath)
-		im = Image.open(imgPath)
+		waiting(3)
+		# imgPath = imagPath(count)
+		# output_screenshot(imgPath)
+		# im = Image.open(imgPath)
 		print(str(count))
 
-		if whiteScreen(im):
-			shotAgain(count)
-			pass
+		# if whiteScreen(im):
+		# 	shotAgain(count)
+		# 	pass
 
 		count += 1
 
