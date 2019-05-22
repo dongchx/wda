@@ -60,3 +60,33 @@
 
 + 所有屏幕截图存放在wda/img目录下
 + 白屏屏幕截图会保存在wda/wimg目录下
+
+#### 并行脚本
+
+	iproxy的完整格式 iproxy LOCAL_TCP_PORT DEVICE_TCP_PORT [UDID]
+    其中LOCAL_TCP_PORT是usb转发的端口号可以自定义；
+    DEVICE_TCP_PORT 是移动设备上的wda端口号固定是8100；
+    UDID是设备ID；
+
+    我们可以为每台设备定义一个唯一usb转发端口号，例：
+    iproxy 8101 8100 idevice_id_1
+    iproxy 8102 8100 idevice_id_2
+    设备id可以通过 idevice_id -l 查看
+
+    在运行脚本时，将端口号作为参数传入，例：
+    python3 autoscript.py 8101
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
