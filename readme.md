@@ -76,6 +76,11 @@
     在运行脚本时，将端口号作为参数传入，例：
     python3 autoscript.py 8101
 
+    此外，还需要通过命令行来启动webDriverAgent
+    切入WebDriverAgent目录，命令行输入
+    xcodebuild -project WebDriverAgent.xcodeproj \-scheme WebDriverAgentRunner \-destination id=$(idevice_id) test
+    $(idevice_id) 替换成设备id
+
 
 
 
